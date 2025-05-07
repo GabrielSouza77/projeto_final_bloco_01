@@ -26,7 +26,6 @@ public class ProdutoController implements ProdutoRepository {
 	
 	@Override
 	public void procurarPorMarca(String marca) {
-	    // Remove espaços em branco no início e fim da marca digitada
 	    String marcaBusca = marca.trim();
 
 	    var produtosEncontrados = listaProdutos.stream()
