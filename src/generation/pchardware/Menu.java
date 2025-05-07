@@ -3,7 +3,10 @@ package generation.pchardware;
 import java.io.IOException;
 import java.util.Scanner;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89c6c3b30e45f64b8d6e3a609192645fbccb526a
 public class Menu {
 	public static void main(String[] args) {
 
@@ -15,14 +18,22 @@ public class Menu {
 
 			System.out.println("*****************************************************");
 			System.out.println("                                                     ");
+<<<<<<< HEAD
 			System.out.println("                GENERATION PC HARDWARE               ");
+=======
+			System.out.println("                GENERATION PC HARDWARE                ");
+>>>>>>> 89c6c3b30e45f64b8d6e3a609192645fbccb526a
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
 			System.out.println("                                                     ");
 			System.out.println("            1 - Criar Produto                        ");
 			System.out.println("            2 - Listar todas os Produtos             ");
 			System.out.println("            3 - Buscar Produto por ID                ");
+<<<<<<< HEAD
 			System.out.println("            4 - Atualizar Dados do Produto           ");
+=======
+			System.out.println("            4 - Atualizar Dados da Produto           ");
+>>>>>>> 89c6c3b30e45f64b8d6e3a609192645fbccb526a
 			System.out.println("            5 - Apagar Produto                       ");
 			System.out.println("            6 - Sair                                 ");
 			System.out.println("                                                     ");
@@ -33,7 +44,11 @@ public class Menu {
 			opcao = leia.nextInt();
 
 			if (opcao == 6) {
+<<<<<<< HEAD
 				System.out.println("\nGeneration PC Hardware - Os melhores hardwares do Brasil você encontra aqui!");
+=======
+				System.out.println("\nGeneration PC Hardware - Os melhores hardwares do Brasil é aqui!");
+>>>>>>> 89c6c3b30e45f64b8d6e3a609192645fbccb526a
 				sobre();
 				leia.close();
 				System.exit(0);
@@ -46,7 +61,11 @@ public class Menu {
 				keyPress();
 				break;
 			case 2:
+<<<<<<< HEAD
 				System.out.println("Listar todas os Produtos\n\n");
+=======
+				System.out.println("Listar todas as Produtos\n\n");
+>>>>>>> 89c6c3b30e45f64b8d6e3a609192645fbccb526a
 
 				keyPress();
 				break;
@@ -99,4 +118,8 @@ public class Menu {
 	    }
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 89c6c3b30e45f64b8d6e3a609192645fbccb526a
