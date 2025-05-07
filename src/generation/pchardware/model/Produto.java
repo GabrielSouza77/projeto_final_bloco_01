@@ -77,6 +77,7 @@ public abstract class Produto {
 		System.out.println("ID do Produto: " + this.id);
 		System.out.println("Nome do Produto: " + this.nome);
 		System.out.println("Tipo do Produto: " + tipo);
+		System.out.println("Marca do Produto: " + this.marca);
 		System.out.println("Preço do Produto: " + nfMoeda.format(this.preco));
 	}	
 }
