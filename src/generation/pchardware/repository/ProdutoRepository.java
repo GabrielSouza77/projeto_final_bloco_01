@@ -5,6 +5,7 @@ import generation.pchardware.model.Produto;
 public interface ProdutoRepository {
 	
 	public void procurarPorId(int id);
+	public void procurarPorMarca(String marca);
 	public void listarTodos();
 	public void cadastrar(Produto produto);
 	public void atualizar(Produto produto);

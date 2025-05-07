@@ -31,9 +31,10 @@ public class Menu {
             System.out.println("            1 - Criar Produto                        ");
             System.out.println("            2 - Listar todos os Produtos             ");
             System.out.println("            3 - Buscar Produto por ID                ");
-            System.out.println("            4 - Atualizar Dados do Produto           ");
-            System.out.println("            5 - Apagar Produto                       ");
-            System.out.println("            6 - Sair                                 ");
+            System.out.println("            4 - Buscar Produto por marca             ");
+            System.out.println("            5 - Atualizar Dados do Produto           ");
+            System.out.println("            6 - Apagar Produto                       ");
+            System.out.println("            7 - Sair                                 ");
             System.out.println("                                                     ");
             System.out.println("*****************************************************");
             System.out.print("Entre com a opção desejada: ");
@@ -107,8 +108,17 @@ public class Menu {
                     produtos.procurarPorId(id);
                     keyPress();
                     break;
-
+                    
                 case 4:
+                    System.out.println("Consultar dados do Produto - por marca\n");
+                    leia.nextLine();
+                    System.out.print("Digite a marca do Produto: ");
+                    marca = leia.nextLine();
+                    produtos.procurarPorMarca(marca);
+                    keyPress();
+                    break;
+
+                case 5:
                     System.out.println("Atualizar dados do Produto\n");
                     System.out.print("Digite o id do produto: ");
                     id = leia.nextInt();
@@ -159,7 +169,7 @@ public class Menu {
                     keyPress();
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("Apagar o Produto\n");
                     System.out.print("Digite o ID do Produto: ");
                     id = leia.nextInt();

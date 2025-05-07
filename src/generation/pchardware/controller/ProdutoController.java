@@ -23,6 +23,22 @@ public class ProdutoController implements ProdutoRepository {
 			System.out.printf("\nO Produto número %d não foi encontrado", id);
 
 	}
+	
+	@Override
+	public void procurarPorMarca(String marca) {
+	    // Remove espaços em branco no início e fim da marca digitada
+	    String marcaBusca = marca.trim();
+
+	    var produtosEncontrados = listaProdutos.stream()
+	        .filter(produto -> produto.getMarca().trim().equalsIgnoreCase(marcaBusca))
+	        .toList();
+
+	    if (produtosEncontrados.isEmpty()) {
+	        System.out.println("\nNenhum produto encontrado com a marca: " + marcaBusca);
+	    } else {
+	        produtosEncontrados.forEach(Produto::visualizar);
+	    }
+	}
 
 	@Override
 	public void listarTodos() {
