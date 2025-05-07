@@ -3,10 +3,25 @@ package generation.pchardware;
 import java.io.IOException;
 import java.util.Scanner;
 
+import generation.pchardware.model.PlacaDeVideo;
+import generation.pchardware.model.PlacaMae;
+import generation.pchardware.model.Processador;
+
 public class Menu {
     public static void main(String[] args) {
 
         Scanner leia = new Scanner(System.in);
+        
+        /* Testes do modelo de dados */
+		
+		Processador cpu1 = new Processador(1, "Ryzen 5 5600X", "AMD", 1, 990.90f, 6, 4.90);
+		cpu1.visualizar();
+		
+		PlacaDeVideo gpu1 = new PlacaDeVideo(2, "RX 6600XT", "AMD", 2, 1490.90f, 8, "Navi 23 XT");
+		gpu1.visualizar();
+		
+		PlacaMae pm1 = new PlacaMae(3, "B450M", "Steel Legend", 3, 890.90f, "AM4", "AMD B450");
+		pm1.visualizar();
 
         int opcao;
 
