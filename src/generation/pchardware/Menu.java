@@ -1,32 +1,27 @@
 package generation.pchardware;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Scanner;
 
+import generation.pchardware.controller.ProdutoController;
 import generation.pchardware.model.PlacaDeVideo;
 import generation.pchardware.model.PlacaMae;
 import generation.pchardware.model.Processador;
+import generation.pchardware.model.Produto;
 
 public class Menu {
     public static void main(String[] args) {
 
         Scanner leia = new Scanner(System.in);
-        
-        /* Testes do modelo de dados */
-		
-		Processador cpu1 = new Processador(1, "Ryzen 5 5600X", "AMD", 1, 990.90f, 6, 4.90);
-		cpu1.visualizar();
-		
-		PlacaDeVideo gpu1 = new PlacaDeVideo(2, "RX 6600XT", "AMD", 2, 1490.90f, 8, "Navi 23 XT");
-		gpu1.visualizar();
-		
-		PlacaMae pm1 = new PlacaMae(3, "B450M", "Steel Legend", 3, 890.90f, "AM4", "AMD B450");
-		pm1.visualizar();
+        ProdutoController produtos = new ProdutoController();
 
-        int opcao;
+        int opcao, id, tipo, nucleos, memoriaVRAM;
+        double clock;
+        String nome, marca, gpu, socket, chipset;
+        float preco;
 
         while (true) {
-
             System.out.println("*****************************************************");
             System.out.println("                                                     ");
             System.out.println("                GENERATION PC HARDWARE               ");
@@ -55,24 +50,123 @@ public class Menu {
             switch (opcao) {
                 case 1:
                     System.out.println("Criar Produto\n");
+                    System.out.println("Escolha o tipo de produto: 1 - Processador  2 - Placa de Vídeo  3 - Placa-Mãe");
+                    tipo = leia.nextInt();
+                    leia.nextLine();
+
+                    System.out.print("Nome: ");
+                    nome = leia.nextLine();
+
+                    System.out.print("Marca: ");
+                    marca = leia.nextLine();
+
+                    System.out.print("Preço: ");
+                    preco = leia.nextFloat();
+
+                    int novoId = produtos.gerarId();
+
+                    switch (tipo) {
+                        case 1 -> {
+                            System.out.print("Núcleos: ");
+                            nucleos = leia.nextInt();
+                            System.out.print("Clock (GHz): ");
+                            clock = leia.nextDouble();
+                            produtos.cadastrar(new Processador(novoId, nome, marca, tipo, preco, nucleos, clock));
+                        }
+                        case 2 -> {
+                            System.out.print("Memória VRAM (GB): ");
+                            memoriaVRAM = leia.nextInt();
+                            leia.nextLine();
+                            System.out.print("GPU (chip gráfico): ");
+                            gpu = leia.nextLine();
+                            produtos.cadastrar(new PlacaDeVideo(novoId, nome, marca, tipo, preco, memoriaVRAM, gpu));
+                        }
+                        case 3 -> {
+                            leia.nextLine();
+                            System.out.print("Socket: ");
+                            socket = leia.nextLine();
+                            System.out.print("Chipset: ");
+                            chipset = leia.nextLine();
+                            produtos.cadastrar(new PlacaMae(novoId, nome, marca, tipo, preco, socket, chipset));
+                        }
+                        default -> System.out.println("Tipo inválido!");
+                    }
                     keyPress();
                     break;
+
                 case 2:
                     System.out.println("Listar todos os Produtos\n");
+                    produtos.listarTodos();
                     keyPress();
                     break;
+
                 case 3:
                     System.out.println("Consultar dados do Produto - por número\n");
+                    System.out.print("Digite o ID do Produto: ");
+                    id = leia.nextInt();
+                    produtos.procurarPorId(id);
                     keyPress();
                     break;
+
                 case 4:
                     System.out.println("Atualizar dados do Produto\n");
+                    System.out.print("Digite o id do produto: ");
+                    id = leia.nextInt();
+
+                    Optional<Produto> produto = produtos.buscarNaCollection(id);
+
+                    if (produto.isPresent()) {
+                        leia.nextLine();
+                        System.out.print("Nome: ");
+                        nome = leia.nextLine();
+
+                        System.out.print("Marca: ");
+                        marca = leia.nextLine();
+
+                        tipo = produto.get().getTipo();
+
+                        System.out.print("Preço: ");
+                        preco = leia.nextFloat();
+
+                        switch (tipo) {
+                            case 1 -> {
+                                System.out.print("Núcleos: ");
+                                nucleos = leia.nextInt();
+                                System.out.print("Clock (GHz): ");
+                                clock = leia.nextDouble();
+                                produtos.atualizar(new Processador(id, nome, marca, tipo, preco, nucleos, clock));
+                            }
+                            case 2 -> {
+                                System.out.print("Memória VRAM (GB): ");
+                                memoriaVRAM = leia.nextInt();
+                                leia.nextLine();
+                                System.out.print("GPU (chip gráfico): ");
+                                gpu = leia.nextLine();
+                                produtos.atualizar(new PlacaDeVideo(id, nome, marca, tipo, preco, memoriaVRAM, gpu));
+                            }
+                            case 3 -> {
+                                leia.nextLine();
+                                System.out.print("Socket: ");
+                                socket = leia.nextLine();
+                                System.out.print("Chipset: ");
+                                chipset = leia.nextLine();
+                                produtos.atualizar(new PlacaMae(id, nome, marca, tipo, preco, socket, chipset));
+                            }
+                        }
+                    } else {
+                        System.out.printf("\nO Produto ID %d não existe!\n", id);
+                    }
                     keyPress();
                     break;
+
                 case 5:
                     System.out.println("Apagar o Produto\n");
+                    System.out.print("Digite o ID do Produto: ");
+                    id = leia.nextInt();
+                    produtos.deletar(id);
                     keyPress();
                     break;
+
                 default:
                     System.out.println("\nOpção Inválida!\n");
                     keyPress();
